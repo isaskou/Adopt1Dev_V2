@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Adopt1Dev_V2.DAL\Adopt1Dev_V2.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\images\" />
+  </ItemGroup>
+
 </Project>

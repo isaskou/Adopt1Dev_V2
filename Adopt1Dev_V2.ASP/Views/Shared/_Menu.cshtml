@@ -1,0 +1,88 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var MenuItem = new[]
+    {
+        new
+        {
+            Name="Home",
+            Controller="Home",
+            Action="Index",
+            Area=""
+        },
+        new
+        {
+            Name="S'enregistrer",
+            Controller="User",
+            Action="Create",
+            Area=""
+
+        },
+        new
+        {
+            Name="Les Daves",
+            Controller="User",
+            Action="Create",
+            Area=""
+
+        }
+
+    };
+}
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Adopt 1 Dave</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                @foreach (var item in MenuItem)
+                {
+                <li class="nav-item">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded"
+                       asp-controller="@item.Controller" asp-action="@item.Action" asp-area="@item.Area">
+                        @item.Name
+                    </a>
+                </li>
+                }
+            </ul>
+            @*<form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>*@
+        </div>
+    </div>
+</nav>
+
+@*<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">Adopt 1 Dave</a>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+                type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                @foreach (var item in MenuItem)
+                {
+                <li class="nav-item">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded"
+                       asp-controller="@item.Controller" asp-action="@item.Action" asp-area="@item.Area">
+                        @item.Name
+                    </a>
+                </li>
+                }
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>*@
+
