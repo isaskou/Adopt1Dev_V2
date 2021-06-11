@@ -21,7 +21,7 @@ namespace Adopt1Dev_V2.DAL.EntitiesConfig
                 .HasMaxLength(255)
                 .IsRequired();
 
-            builder.HasMany(s => s.SkillCategories)
+            builder.HasOne(s => s.SkillCategory)
                 .WithMany(sc => sc.Skills);
 
             builder.HasIndex(s => s.Name)

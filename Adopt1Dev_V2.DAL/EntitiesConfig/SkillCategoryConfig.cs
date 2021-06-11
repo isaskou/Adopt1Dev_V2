@@ -21,9 +21,6 @@ namespace Adopt1Dev_V2.DAL.EntitiesConfig
                 .HasMaxLength(255)
                 .IsRequired();
 
-            builder.HasMany(sc => sc.Skills)
-                .WithMany(sk => sk.SkillCategories);
-
             builder.HasIndex(sc => sc.Name)
                 .IsUnique();
         }
