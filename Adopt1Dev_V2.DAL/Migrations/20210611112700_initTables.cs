@@ -21,19 +21,6 @@ namespace Adopt1Dev_V2.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Skill",
-                columns: table => new
-                {
-                    SkillId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Skill", x => x.SkillId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SkillCategory",
                 columns: table => new
                 {
@@ -66,27 +53,23 @@ namespace Adopt1Dev_V2.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SkillSkillCategory",
+                name: "Skill",
                 columns: table => new
                 {
-                    SkillCategoriesSkillCategoryId = table.Column<int>(type: "int", nullable: false),
-                    SkillsSkillId = table.Column<int>(type: "int", nullable: false)
+                    SkillId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    SkillCategoryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SkillSkillCategory", x => new { x.SkillCategoriesSkillCategoryId, x.SkillsSkillId });
+                    table.PrimaryKey("PK_Skill", x => x.SkillId);
                     table.ForeignKey(
-                        name: "FK_SkillSkillCategory_Skill_SkillsSkillId",
-                        column: x => x.SkillsSkillId,
-                        principalTable: "Skill",
-                        principalColumn: "SkillId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SkillSkillCategory_SkillCategory_SkillCategoriesSkillCategoryId",
-                        column: x => x.SkillCategoriesSkillCategoryId,
+                        name: "FK_Skill_SkillCategory_SkillCategoryId",
+                        column: x => x.SkillCategoryId,
                         principalTable: "SkillCategory",
                         principalColumn: "SkillCategoryId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -176,15 +159,15 @@ namespace Adopt1Dev_V2.DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Skill_SkillCategoryId",
+                table: "Skill",
+                column: "SkillCategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SkillCategory_Name",
                 table: "SkillCategory",
                 column: "Name",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SkillSkillCategory_SkillsSkillId",
-                table: "SkillSkillCategory",
-                column: "SkillsSkillId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Email",
@@ -206,16 +189,10 @@ namespace Adopt1Dev_V2.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SkillSkillCategory");
-
-            migrationBuilder.DropTable(
                 name: "UserSalary");
 
             migrationBuilder.DropTable(
                 name: "UserSkill");
-
-            migrationBuilder.DropTable(
-                name: "SkillCategory");
 
             migrationBuilder.DropTable(
                 name: "Salary");
@@ -225,6 +202,9 @@ namespace Adopt1Dev_V2.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "SkillCategory");
         }
     }
 }

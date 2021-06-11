@@ -68,10 +68,15 @@ namespace Adopt1Dev_V2.DAL.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<int?>("SkillCategoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("SkillId");
 
                     b.HasIndex("Name")
                         .IsUnique();
+
+                    b.HasIndex("SkillCategoryId");
 
                     b.ToTable("Skill");
                 });
@@ -207,19 +212,13 @@ namespace Adopt1Dev_V2.DAL.Migrations
                     b.HasCheckConstraint("CK_Score", "Score BETWEEN 0 AND 10");
                 });
 
-            modelBuilder.Entity("SkillSkillCategory", b =>
+            modelBuilder.Entity("Adopt1Dev_V2.DAL.Entities.Skill", b =>
                 {
-                    b.Property<int>("SkillCategoriesSkillCategoryId")
-                        .HasColumnType("int");
+                    b.HasOne("Adopt1Dev_V2.DAL.Entities.SkillCategory", "SkillCategory")
+                        .WithMany("Skills")
+                        .HasForeignKey("SkillCategoryId");
 
-                    b.Property<int>("SkillsSkillId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SkillCategoriesSkillCategoryId", "SkillsSkillId");
-
-                    b.HasIndex("SkillsSkillId");
-
-                    b.ToTable("SkillSkillCategory");
+                    b.Navigation("SkillCategory");
                 });
 
             modelBuilder.Entity("Adopt1Dev_V2.DAL.Entities.UserSalary", b =>
@@ -260,21 +259,6 @@ namespace Adopt1Dev_V2.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SkillSkillCategory", b =>
-                {
-                    b.HasOne("Adopt1Dev_V2.DAL.Entities.SkillCategory", null)
-                        .WithMany()
-                        .HasForeignKey("SkillCategoriesSkillCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Adopt1Dev_V2.DAL.Entities.Skill", null)
-                        .WithMany()
-                        .HasForeignKey("SkillsSkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Adopt1Dev_V2.DAL.Entities.Salary", b =>
                 {
                     b.Navigation("UserSalaries");
@@ -283,6 +267,11 @@ namespace Adopt1Dev_V2.DAL.Migrations
             modelBuilder.Entity("Adopt1Dev_V2.DAL.Entities.Skill", b =>
                 {
                     b.Navigation("UserSkills");
+                });
+
+            modelBuilder.Entity("Adopt1Dev_V2.DAL.Entities.SkillCategory", b =>
+                {
+                    b.Navigation("Skills");
                 });
 
             modelBuilder.Entity("Adopt1Dev_V2.DAL.Entities.User", b =>
