@@ -2,7 +2,7 @@
 {
     public class UserSalary
     {
-        public int ProfileId { get; set; }
+        public int UserId { get; set; }
         public int SalaryId { get; set; }
 
         public double Montant { get; set; }
