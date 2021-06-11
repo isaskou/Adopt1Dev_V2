@@ -14,6 +14,5 @@ namespace Adopt1Dev_V2.ASP.Services.Interfaces
         void Insert(U form);
         void Update(U form);
         bool Delete(int id);
-
     }
 }
