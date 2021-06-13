@@ -1,3 +1,8 @@
+using Adopt1Dev_V2.ASP.Models;
+using Adopt1Dev_V2.ASP.Models.Forms;
+using Adopt1Dev_V2.ASP.Services;
+using Adopt1Dev_V2.ASP.Services.Interfaces;
+using Adopt1Dev_V2.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +29,11 @@ namespace Adopt1Dev_V2.ASP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //Services
+            services.AddScoped<DataContext>();
+
+            services.AddScoped<IService<UserModel, RegisterForm>, RegisterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

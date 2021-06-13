@@ -15,7 +15,7 @@ namespace Adopt1Dev_V2.DAL
         private readonly string _connString;
         public DataContext()
         {
-            _connString = @"server=LAPTOP-03RLPA2O\SQLEXPRESS;Database=Adopt1Dev_V2; Integrated Security=True;";
+            _connString = @"server=LAPTOP-03RLPA2O\SQLEXPRESS;Database=Adopt1Dave; Integrated Security=True;";
         }
 
         public DataContext(string connString)
