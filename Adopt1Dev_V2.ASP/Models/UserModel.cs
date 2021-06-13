@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Adopt1Dev_V2.Tools;
 
 namespace Adopt1Dev_V2.ASP.Models
 {
@@ -17,7 +18,7 @@ namespace Adopt1Dev_V2.ASP.Models
         {
             get
             {
-                return HashMe(PasswordIn);
+                return Security.HashMe(PasswordIn);
             }
         }
 
@@ -32,16 +33,5 @@ namespace Adopt1Dev_V2.ASP.Models
         public IEnumerable<UserSalaryModel> UserSalaries { get; set; }
         public IEnumerable<UserSkillModel> UserSkills { get; set; }
 
-        private byte[] HashMe(string passwordIn)
-        {
-            byte[] data = Encoding.UTF8.GetBytes(passwordIn);
-            byte[] result;
-
-            SHA512 shaM = new SHA512Managed();
-
-            result = shaM.ComputeHash(data);
-
-            return result;
-        }
     }
 }
