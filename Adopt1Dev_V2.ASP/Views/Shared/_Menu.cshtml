@@ -11,14 +11,14 @@
             Action="Index",
             Area=""
         },
-        new
-        {
-            Name="S'enregistrer",
-            Controller="User",
-            Action="Create",
-            Area=""
+        //new
+        //{
+        //    Name="S'enregistrer",
+        //    Controller="User",
+        //    Action="Create",
+        //    Area=""
 
-        },
+        //},
         new
         {
             Name="Les Daves",
@@ -31,9 +31,11 @@
     };
 }
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Adopt 1 Dave</a>
+<link rel="stylesheet" href="~/css/site.css"/>
+
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed">
+    <div class="container-fluid nav-external align-items-center justify-content-center justify-content-lg-start">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">Adopt 1 Dave</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,20 +43,24 @@
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 @foreach (var item in MenuItem)
                 {
-                <li class="nav-item">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded"
-                       asp-controller="@item.Controller" asp-action="@item.Action" asp-area="@item.Area">
-                        @item.Name
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded"
+                           asp-controller="@item.Controller" asp-action="@item.Action" asp-area="@item.Area">
+                            @item.Name
+                        </a>
+                    </li>
                 }
             </ul>
+            </div>
             @*<form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>*@
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>*@
+            <div class="text-end">
+                <a type="button" class="btn btn-outline-warning me-2" asp-controller="User" asp-action="Login">Login</a>
+                <a type="button" class="btn btn-warning" asp-controller="User" asp-action="Create">Register</a>
+            </div>
         </div>
-    </div>
 </nav>
 
 @*<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">

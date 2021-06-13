@@ -30,12 +30,15 @@
             </div>
         </nav>*@
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <div class="page">
+        <div class="container">
+            <main role="main" class="content">
+                <hr />
 
+                @RenderBody()
+            </main>
+        </div>
+    </div class="page">
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - Adopt1Dev_V2.ASP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
